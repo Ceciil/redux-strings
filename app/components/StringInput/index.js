@@ -11,8 +11,18 @@ import PropTypes from 'prop-types';
 function StringInput({ value, onInputChange, onSubmit, buttonText }) {
   return (
     <div>
-      <input value={value} onChange={onInputChange} />
-      <button type="button" onClick={onSubmit}>
+      <input
+        value={value}
+        onChange={event => {
+          onInputChange(event.target.value);
+        }}
+      />
+      <button
+        type="button"
+        onClick={() => {
+          onSubmit(value);
+        }}
+      >
         {buttonText}
       </button>
     </div>

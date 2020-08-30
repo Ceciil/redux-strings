@@ -10,6 +10,7 @@ export const initialState = {
   loading: false,
   error: false,
   strings: ['small', 'cat'],
+  uiString: 'Angela',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -31,6 +32,11 @@ const stringViewerReducer = (state = initialState, action) =>
         break;
       case 'ADD_STRING':
         newState.strings = [...newState.strings, action.string];
+        break;
+
+      // UI State Reducers
+      case 'UPDATE_UI_STRING':
+        newState.uiString = action.uiString;
         break;
       case DEFAULT_ACTION:
         break;

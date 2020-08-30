@@ -19,13 +19,20 @@ import makeSelectStringViewer from './selectors';
 import reducer, { initialState } from './reducer';
 import saga from './saga';
 
-export function StringViewer({ loading, error, strings, onClick }) {
+export function StringViewer({
+  loading,
+  error,
+  strings,
+  uiString,
+  onChange,
+  onSubmit,
+}) {
   useInjectReducer({ key: 'stringViewer', reducer });
   useInjectSaga({ key: 'stringViewer', saga });
 
-  useEffect(() => {
-    onClick();
-  }, []);
+  // useEffect(() => {
+  //   onClick();
+  // }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -42,9 +49,9 @@ export function StringViewer({ loading, error, strings, onClick }) {
         <meta name="description" content="Description of StringViewer" />
       </Helmet>
       <StringInput
-        value="Angela"
-        onInputChange={() => {}}
-        onSubmit={() => {}}
+        value={uiString}
+        onInputChange={onChange}
+        onSubmit={onSubmit}
         buttonText="Add"
       />
       <StringList strings={strings} />
@@ -56,7 +63,9 @@ StringViewer.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.bool,
   strings: PropTypes.arrayOf(PropTypes.string),
-  onClick: PropTypes.func,
+  uiString: PropTypes.string,
+  onChange: PropTypes.func,
+  onSubmit: PropTypes.func,
 };
 
 const mapStateToProps = state => state.stringViewer || initialState;
@@ -66,12 +75,17 @@ const mapStateToProps = state => state.stringViewer || initialState;
 // });
 
 function mapDispatchToProps(dispatch) {
-  const onClick = () => {
-    dispatch({ type: 'GET_STRINGS', strings: ['large', 'dog'] });
+  const onChange = string => {
+    dispatch({ type: 'UPDATE_UI_STRING', uiString: string });
+  };
+
+  const onSubmit = string => {
+    dispatch({ type: 'ADD_STRING', string });
   };
 
   return {
-    onClick,
+    onChange,
+    onSubmit,
   };
 }
 
