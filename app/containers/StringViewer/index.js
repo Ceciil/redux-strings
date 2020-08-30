@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringList from 'components/StringList';
+import StringInput from 'components/StringInput';
 import makeSelectStringViewer from './selectors';
 import reducer, { initialState } from './reducer';
 import saga from './saga';
@@ -40,9 +41,12 @@ export function StringViewer({ loading, error, strings, onClick }) {
         <title>StringViewer</title>
         <meta name="description" content="Description of StringViewer" />
       </Helmet>
-      <button type="button" onClick={onClick}>
-        Get State
-      </button>
+      <StringInput
+        value="Angela"
+        onInputChange={() => {}}
+        onSubmit={() => {}}
+        buttonText="Add"
+      />
       <StringList strings={strings} />
     </div>
   );

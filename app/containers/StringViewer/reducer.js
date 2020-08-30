@@ -29,6 +29,9 @@ const stringViewerReducer = (state = initialState, action) =>
         newState.loading = false;
         newState.error = true;
         break;
+      case 'ADD_STRING':
+        newState.strings = [...newState.strings, action.string];
+        break;
       case DEFAULT_ACTION:
         break;
     }
