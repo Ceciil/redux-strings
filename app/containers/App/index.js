@@ -11,7 +11,7 @@ import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
-import StringList from 'components/StringList';
+import StringViewer from 'containers/StringViewer';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -40,10 +40,7 @@ export default function App() {
       </Helmet>
       <Header />
       <Switch>
-        <Route
-          path="/"
-          component={() => <StringList strings={['hello', 'world']} />}
-        />
+        <Route path="/" component={StringViewer} />
         <Route exact path="/home" component={HomePage} />
         <Route path="/features" component={FeaturePage} />
         <Route path="" component={NotFoundPage} />

@@ -13,11 +13,12 @@ import { compose } from 'redux';
 
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
+import StringList from 'components/StringList';
 import makeSelectStringViewer from './selectors';
-import reducer from './reducer';
+import reducer, { initialState } from './reducer';
 import saga from './saga';
 
-export function StringViewer() {
+export function StringViewer({ strings }) {
   useInjectReducer({ key: 'stringViewer', reducer });
   useInjectSaga({ key: 'stringViewer', saga });
 
@@ -27,17 +28,22 @@ export function StringViewer() {
         <title>StringViewer</title>
         <meta name="description" content="Description of StringViewer" />
       </Helmet>
+
+      <StringList strings={strings} />
     </div>
   );
 }
 
 StringViewer.propTypes = {
+  strings: PropTypes.arrayOf(PropTypes.string),
   dispatch: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = createStructuredSelector({
-  stringViewer: makeSelectStringViewer(),
-});
+const mapStateToProps = state => state.stringViewer || initialState;
+
+// const mapStateToProps = createStructuredSelector({
+//   stringViewer: makeSelectStringViewer(),
+// });
 
 function mapDispatchToProps(dispatch) {
   return {
