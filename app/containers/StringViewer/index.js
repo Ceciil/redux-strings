@@ -28,7 +28,9 @@ export function StringViewer({ strings, onClick }) {
         <title>StringViewer</title>
         <meta name="description" content="Description of StringViewer" />
       </Helmet>
-      <button onClick={onClick}>Get State</button>
+      <button type="button" onClick={onClick}>
+        Get State
+      </button>
       <StringList strings={strings} />
     </div>
   );
@@ -47,7 +49,7 @@ const mapStateToProps = state => state.stringViewer || initialState;
 
 function mapDispatchToProps(dispatch) {
   const onClick = () => {
-    dispatch({ type: 'UPDATE_STRINGS', strings: ['large', 'dog'] });
+    dispatch({ type: 'GET_STRINGS', strings: ['large', 'dog'] });
   };
 
   return {
