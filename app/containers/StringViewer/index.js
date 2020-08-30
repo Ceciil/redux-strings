@@ -4,7 +4,7 @@
  *
  */
 
-import React, { memo } from 'react';
+import React, { useEffect, memo } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Helmet } from 'react-helmet';
@@ -18,9 +18,21 @@ import makeSelectStringViewer from './selectors';
 import reducer, { initialState } from './reducer';
 import saga from './saga';
 
-export function StringViewer({ strings, onClick }) {
+export function StringViewer({ loading, error, strings, onClick }) {
   useInjectReducer({ key: 'stringViewer', reducer });
   useInjectSaga({ key: 'stringViewer', saga });
+
+  useEffect(() => {
+    onClick();
+  }, []);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>There is an error!</div>;
+  }
 
   return (
     <div>
@@ -37,6 +49,8 @@ export function StringViewer({ strings, onClick }) {
 }
 
 StringViewer.propTypes = {
+  loading: PropTypes.bool,
+  error: PropTypes.bool,
   strings: PropTypes.arrayOf(PropTypes.string),
   onClick: PropTypes.func,
 };

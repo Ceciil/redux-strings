@@ -6,10 +6,11 @@ export function* getStrings() {
   const requestURL = `http://localhost:3000/strings`;
 
   try {
+    yield put({ type: 'UPDATE_STRINGS_REQUEST' });
     const strings = yield call(request, requestURL);
-    yield put({ type: 'UPDATE_STRINGS', strings });
+    yield put({ type: 'UPDATE_STRINGS_SUCCESS', strings });
   } catch (error) {
-    console.log(error);
+    yield put({ type: 'UPDATE_STRINGS_FAILURE' });
   }
   // See example in containers/HomePage/saga.js
 }
