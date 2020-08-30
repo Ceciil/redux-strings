@@ -18,7 +18,7 @@ import makeSelectStringViewer from './selectors';
 import reducer, { initialState } from './reducer';
 import saga from './saga';
 
-export function StringViewer({ strings }) {
+export function StringViewer({ strings, onClick }) {
   useInjectReducer({ key: 'stringViewer', reducer });
   useInjectSaga({ key: 'stringViewer', saga });
 
@@ -28,7 +28,7 @@ export function StringViewer({ strings }) {
         <title>StringViewer</title>
         <meta name="description" content="Description of StringViewer" />
       </Helmet>
-
+      <button onClick={onClick}>Get State</button>
       <StringList strings={strings} />
     </div>
   );
@@ -36,7 +36,7 @@ export function StringViewer({ strings }) {
 
 StringViewer.propTypes = {
   strings: PropTypes.arrayOf(PropTypes.string),
-  dispatch: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 };
 
 const mapStateToProps = state => state.stringViewer || initialState;
@@ -46,8 +46,12 @@ const mapStateToProps = state => state.stringViewer || initialState;
 // });
 
 function mapDispatchToProps(dispatch) {
+  const onClick = () => {
+    dispatch({ type: 'UPDATE_STRINGS', strings: ['large', 'dog'] });
+  };
+
   return {
-    dispatch,
+    onClick,
   };
 }
 

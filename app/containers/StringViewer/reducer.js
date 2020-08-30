@@ -12,8 +12,11 @@ export const initialState = {
 
 /* eslint-disable default-case, no-param-reassign */
 const stringViewerReducer = (state = initialState, action) =>
-  produce(state, (/* draft */) => {
+  produce(state, newState => {
     switch (action.type) {
+      case 'UPDATE_STRINGS':
+        newState.strings = action.strings;
+        break;
       case DEFAULT_ACTION:
         break;
     }
