@@ -26,13 +26,14 @@ export function StringViewer({
   uiString,
   onChange,
   onSubmit,
+  getStrings,
 }) {
   useInjectReducer({ key: 'stringViewer', reducer });
   useInjectSaga({ key: 'stringViewer', saga });
 
-  // useEffect(() => {
-  //   onClick();
-  // }, []);
+  useEffect(() => {
+    getStrings();
+  }, []);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -66,6 +67,7 @@ StringViewer.propTypes = {
   uiString: PropTypes.string,
   onChange: PropTypes.func,
   onSubmit: PropTypes.func,
+  getStrings: PropTypes.func,
 };
 
 const mapStateToProps = state => state.stringViewer || initialState;
@@ -83,9 +85,14 @@ function mapDispatchToProps(dispatch) {
     dispatch({ type: 'ADD_STRING', string });
   };
 
+  const getStrings = () => {
+    dispatch({ type: 'GET_STRINGS' });
+  };
+
   return {
     onChange,
     onSubmit,
+    getStrings,
   };
 }
 

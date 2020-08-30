@@ -30,10 +30,19 @@ const stringViewerReducer = (state = initialState, action) =>
         newState.loading = false;
         newState.error = true;
         break;
-      case 'ADD_STRING':
-        newState.strings = [...newState.strings, action.string];
+      case 'ADD_STRING_REQUEST':
+        newState.loading2 = true;
+        newState.error2 = false;
         break;
-
+      case 'ADD_STRING_SUCCESS':
+        newState.loading2 = false;
+        newState.error2 = false;
+        newState.strings = action.strings;
+        break;
+      case 'ADD_STRING_FAILURE':
+        newState.loading2 = false;
+        newState.error2 = true;
+        break;
       // UI State Reducers
       case 'UPDATE_UI_STRING':
         newState.uiString = action.uiString;
