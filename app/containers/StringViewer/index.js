@@ -15,6 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringList from 'components/StringList';
 import StringInput from 'components/StringInput';
+import Spinner from 'components/Spinner';
 import makeSelectStringViewer from './selectors';
 import reducer, { initialState } from './reducer';
 import saga from './saga';
@@ -36,7 +37,11 @@ export function StringViewer({
   }, []);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   }
 
   if (error) {
