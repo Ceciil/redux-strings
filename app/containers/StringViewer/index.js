@@ -14,21 +14,12 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringList from 'components/StringList';
-import StringInput from 'components/StringInput';
 import Spinner from 'components/Spinner';
 import makeSelectStringViewer from './selectors';
 import reducer, { initialState } from './reducer';
 import saga from './saga';
 
-export function StringViewer({
-  loading,
-  error,
-  strings,
-  uiString,
-  onChange,
-  onSubmit,
-  getStrings,
-}) {
+export function StringViewer({ loading, error, strings, getStrings }) {
   useInjectReducer({ key: 'stringViewer', reducer });
   useInjectSaga({ key: 'stringViewer', saga });
 
@@ -54,12 +45,6 @@ export function StringViewer({
         <title>StringViewer</title>
         <meta name="description" content="Description of StringViewer" />
       </Helmet>
-      <StringInput
-        value={uiString}
-        onInputChange={onChange}
-        onSubmit={onSubmit}
-        buttonText="Add"
-      />
       <StringList strings={strings} />
     </div>
   );
@@ -69,9 +54,6 @@ StringViewer.propTypes = {
   loading: PropTypes.bool,
   error: PropTypes.bool,
   strings: PropTypes.arrayOf(PropTypes.string),
-  uiString: PropTypes.string,
-  onChange: PropTypes.func,
-  onSubmit: PropTypes.func,
   getStrings: PropTypes.func,
 };
 
@@ -82,21 +64,11 @@ const mapStateToProps = state => state.stringViewer || initialState;
 // });
 
 function mapDispatchToProps(dispatch) {
-  const onChange = string => {
-    dispatch({ type: 'UPDATE_UI_STRING', uiString: string });
-  };
-
-  const onSubmit = string => {
-    dispatch({ type: 'ADD_STRING', string });
-  };
-
   const getStrings = () => {
     dispatch({ type: 'GET_STRINGS' });
   };
 
   return {
-    onChange,
-    onSubmit,
     getStrings,
   };
 }

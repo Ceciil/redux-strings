@@ -10,7 +10,6 @@ export const initialState = {
   loading: false,
   error: false,
   strings: ['small', 'cat'],
-  uiString: 'Angela',
 };
 
 /* eslint-disable default-case, no-param-reassign */
@@ -29,23 +28,6 @@ const stringViewerReducer = (state = initialState, action) =>
       case 'UPDATE_STRINGS_FAILURE':
         newState.loading = false;
         newState.error = true;
-        break;
-      case 'ADD_STRING_REQUEST':
-        newState.loading2 = true;
-        newState.error2 = false;
-        break;
-      case 'ADD_STRING_SUCCESS':
-        newState.loading2 = false;
-        newState.error2 = false;
-        newState.strings = action.strings;
-        break;
-      case 'ADD_STRING_FAILURE':
-        newState.loading2 = false;
-        newState.error2 = true;
-        break;
-      // UI State Reducers
-      case 'UPDATE_UI_STRING':
-        newState.uiString = action.uiString;
         break;
       case DEFAULT_ACTION:
         break;

@@ -12,6 +12,7 @@ import styled from 'styled-components';
 import { Switch, Route } from 'react-router-dom';
 
 import StringViewer from 'containers/StringViewer';
+import StringAdder from 'containers/StringAdder';
 import HomePage from 'containers/HomePage/Loadable';
 import FeaturePage from 'containers/FeaturePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -40,9 +41,8 @@ export default function App() {
       </Helmet>
       <Header />
       <Switch>
-        <Route path="/" component={StringViewer} />
-        <Route exact path="/home" component={HomePage} />
-        <Route path="/features" component={FeaturePage} />
+        <Route path="/view" component={StringViewer} />
+        <Route path="/input" component={StringAdder} />
         <Route path="" component={NotFoundPage} />
       </Switch>
       <Footer />
