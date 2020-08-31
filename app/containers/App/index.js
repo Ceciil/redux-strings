@@ -39,7 +39,6 @@ export default function App() {
       >
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
-      <Header />
 
       {/* TODO: Refactor page navigation into components */}
       <span>
@@ -52,7 +51,7 @@ export default function App() {
         <Route path="/input" component={StringAdder} />
         <Route path="" component={NotFoundPage} />
       </Switch>
-      <Footer />
+
       <GlobalStyle />
     </AppWrapper>
   );

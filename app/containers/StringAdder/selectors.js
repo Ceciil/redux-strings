@@ -15,11 +15,27 @@ const selectStringAdderDomain = state => state.stringAdder || initialState;
  * Default selector used by StringAdder
  */
 
-const makeSelectStringAdder = () =>
+const makeSelectUIString = () =>
   createSelector(
     selectStringAdderDomain,
-    substate => substate,
+    substate => substate.uiString,
   );
 
-export default makeSelectStringAdder;
-export { selectStringAdderDomain };
+const makeSelectLoading = () =>
+  createSelector(
+    selectStringAdderDomain,
+    substate => substate.loading,
+  );
+
+const makeSelectError = () =>
+  createSelector(
+    selectStringAdderDomain,
+    substate => substate.error,
+  );
+
+export {
+  selectStringAdderDomain,
+  makeSelectUIString,
+  makeSelectLoading,
+  makeSelectError,
+};

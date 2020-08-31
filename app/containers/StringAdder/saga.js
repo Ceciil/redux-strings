@@ -14,8 +14,8 @@ export function* addString(action) {
 
   try {
     yield put({ type: 'ADD_STRING_REQUEST' });
-    const strings = yield call(request, requestURL, options);
-    yield put({ type: 'ADD_STRING_SUCCESS', strings });
+    yield call(request, requestURL, options);
+    yield put({ type: 'ADD_STRING_SUCCESS' });
   } catch (error) {
     yield put({ type: 'ADD_STRING_FAILURE' });
   }

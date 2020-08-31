@@ -14,8 +14,12 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringInput from 'components/StringInput';
-import makeSelectStringAdder from './selectors';
-import reducer, { initialState } from './reducer';
+import {
+  makeSelectUIString,
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
+import reducer from './reducer';
 import saga from './saga';
 
 export function StringAdder({ loading, error, uiString, onChange, onSubmit }) {
@@ -51,11 +55,11 @@ StringAdder.propTypes = {
   onSubmit: PropTypes.func,
 };
 
-const mapStateToProps = state => state.stringAdder || initialState;
-
-// const mapStateToProps = createStructuredSelector({
-//   stringAdder: makeSelectStringAdder(),
-// });
+const mapStateToProps = createStructuredSelector({
+  uiString: makeSelectUIString(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
 
 function mapDispatchToProps(dispatch) {
   const onChange = string => {
