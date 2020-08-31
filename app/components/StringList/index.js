@@ -9,7 +9,8 @@ import PropTypes from 'prop-types';
 // import styled from 'styled-components';
 
 function StringList({ strings }) {
-  const list = strings.map(string => <div key={string}>{string}</div>);
+  // TODO: Use uuid for unique keys
+  const list = strings.map((string, i) => <div key={string + i}>{string}</div>);
 
   return <div>{list}</div>;
 }
