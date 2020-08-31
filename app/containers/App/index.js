@@ -9,7 +9,7 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 
 import StringViewer from 'containers/StringViewer';
 import StringAdder from 'containers/StringAdder';
@@ -40,6 +40,13 @@ export default function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
       <Header />
+
+      {/* TODO: Refactor page navigation into components */}
+      <span>
+        <Link to="/view">View Strings</Link>{' '}
+        <Link to="/input">Input a String</Link>
+      </span>
+
       <Switch>
         <Route path="/view" component={StringViewer} />
         <Route path="/input" component={StringAdder} />

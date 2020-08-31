@@ -22,6 +22,10 @@ export function StringAdder({ loading, error, uiString, onChange, onSubmit }) {
   useInjectReducer({ key: 'stringAdder', reducer });
   useInjectSaga({ key: 'stringAdder', saga });
 
+  if (error) {
+    return <div>There is an error!</div>;
+  }
+
   return (
     <div>
       <Helmet>
@@ -33,6 +37,7 @@ export function StringAdder({ loading, error, uiString, onChange, onSubmit }) {
         onInputChange={onChange}
         onSubmit={onSubmit}
         buttonText="Add"
+        disabled={loading}
       />
     </div>
   );

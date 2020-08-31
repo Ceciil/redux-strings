@@ -7,6 +7,8 @@ import produce from 'immer';
 import { DEFAULT_ACTION } from './constants';
 
 export const initialState = {
+  loading: false,
+  error: false,
   uiString: 'Angela',
 };
 
