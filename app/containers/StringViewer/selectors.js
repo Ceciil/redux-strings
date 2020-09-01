@@ -24,7 +24,7 @@ const makeSelectStrings = () =>
 const makeSelectLoading = () =>
   createSelector(
     selectStringViewerDomain,
-    substate => substate.laoding,
+    substate => substate.loading,
   );
 const makeSelectError = () =>
   createSelector(

@@ -14,6 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringInput from 'components/StringInput';
+import { updateString } from './actions';
 import {
   makeSelectUIString,
   makeSelectLoading,
@@ -63,7 +64,7 @@ const mapStateToProps = createStructuredSelector({
 
 function mapDispatchToProps(dispatch) {
   const onChange = string => {
-    dispatch({ type: 'UPDATE_UI_STRING', uiString: string });
+    dispatch(updateString(string));
   };
 
   const onSubmit = string => {

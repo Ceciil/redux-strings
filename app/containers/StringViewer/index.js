@@ -15,7 +15,7 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringList from 'components/StringList';
 import Spinner from 'components/Spinner';
-import { FETCH_STRINGS } from './constants';
+import { fetchStrings } from './actions';
 import {
   makeSelectStrings,
   makeSelectLoading,
@@ -70,7 +70,7 @@ const mapStateToProps = createStructuredSelector({
 
 export function mapDispatchToProps(dispatch) {
   const getStrings = () => {
-    dispatch({ type: FETCH_STRINGS });
+    dispatch(fetchStrings());
   };
 
   return {
