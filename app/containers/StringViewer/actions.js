@@ -22,12 +22,14 @@ export function updateString() {
     type: UPDATE_STRINGS_REQUEST,
   };
 }
+
 export function stringUpdated(strings) {
   return {
     type: UPDATE_STRINGS_SUCCESS,
     strings,
   };
 }
+
 export function stringUpdatingError() {
   return {
     type: UPDATE_STRINGS_FAILURE,

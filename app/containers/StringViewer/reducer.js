@@ -4,7 +4,12 @@
  *
  */
 import produce from 'immer';
-import { DEFAULT_ACTION } from './constants';
+import {
+  DEFAULT_ACTION,
+  UPDATE_STRINGS_REQUEST,
+  UPDATE_STRINGS_SUCCESS,
+  UPDATE_STRINGS_FAILURE,
+} from './constants';
 
 export const initialState = {
   loading: false,
@@ -16,16 +21,16 @@ export const initialState = {
 const stringViewerReducer = (state = initialState, action) =>
   produce(state, newState => {
     switch (action.type) {
-      case 'UPDATE_STRINGS_REQUEST':
+      case UPDATE_STRINGS_REQUEST:
         newState.loading = true;
         newState.error = false;
         break;
-      case 'UPDATE_STRINGS_SUCCESS':
+      case UPDATE_STRINGS_SUCCESS:
         newState.loading = false;
         newState.error = false;
         newState.strings = action.strings;
         break;
-      case 'UPDATE_STRINGS_FAILURE':
+      case UPDATE_STRINGS_FAILURE:
         newState.loading = false;
         newState.error = true;
         break;

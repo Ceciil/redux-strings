@@ -10,6 +10,7 @@ import PropTypes from 'prop-types';
 
 function StringList({ strings }) {
   // TODO: Use uuid for unique keys
+  // eslint-disable-next-line react/no-array-index-key
   const list = strings.map((string, i) => <div key={string + i}>{string}</div>);
 
   return <div>{list}</div>;
