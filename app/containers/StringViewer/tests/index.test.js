@@ -35,7 +35,12 @@ describe('<StringViewer />', () => {
     } = render(
       <Provider store={store}>
         <IntlProvider locale="en">
-          <StringViewer loading={false} error={false} strings={[]} />
+          <StringViewer
+            loading={false}
+            error={false}
+            strings={[]}
+            getStrings={props.getStrings}
+          />
         </IntlProvider>
       </Provider>,
     );

@@ -29,14 +29,14 @@ describe('stringViewerSaga Saga', () => {
 
   it('Should call the stringUpdatingError action if the response errors', () => {
     const response = new Error('Some error');
-    const putDescriptor = getStrings.throw(response).value;
+    const putDescriptor = getFetchStrings.throw(response).value;
     expect(putDescriptor).toEqual(put(stringUpdatingError(response)));
   });
 
   it('Should start task to watch for FETCH_STRINGS action', () => {
-    const takeLatestDescriptor = stringViewerSaga.next().value;
-    expect(takeLatestDescriptor).toEqual(
-      takeLatest(FETCH_STRINGS, getFetchStrings),
-    );
+    const saga = stringViewerSaga();
+
+    const takeLatestDescriptor = saga.next().value;
+    expect(takeLatestDescriptor).toEqual(takeLatest(FETCH_STRINGS, getStrings));
   });
 });
