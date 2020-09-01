@@ -9,6 +9,7 @@ import {
   UPDATE_STRINGS_REQUEST,
   UPDATE_STRINGS_SUCCESS,
   UPDATE_STRINGS_FAILURE,
+  FETCH_STRINGS,
 } from './constants';
 
 export function defaultAction() {
@@ -33,5 +34,11 @@ export function stringUpdated(strings) {
 export function stringUpdatingError() {
   return {
     type: UPDATE_STRINGS_FAILURE,
+  };
+}
+
+export function fetchStrings() {
+  return {
+    type: FETCH_STRINGS,
   };
 }

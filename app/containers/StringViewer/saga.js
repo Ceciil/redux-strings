@@ -4,6 +4,7 @@ import {
   UPDATE_STRINGS_REQUEST,
   UPDATE_STRINGS_SUCCESS,
   UPDATE_STRINGS_FAILURE,
+  FETCH_STRINGS,
 } from './constants';
 
 // Individual exports for testing
@@ -22,5 +23,5 @@ export function* getStrings() {
 
 export default function* stringViewerSaga() {
   // I want to make a call to get strings
-  yield takeLatest('GET_STRINGS', getStrings);
+  yield takeLatest(FETCH_STRINGS, getStrings);
 }

@@ -11,3 +11,4 @@ export const UPDATE_STRINGS_SUCCESS =
   'redux-strings/App/StringViewer/UPDATE_STRINGS_SUCCESS';
 export const UPDATE_STRINGS_FAILURE =
   'redux-strings/App/StringViewer/UPDATE_STRINGS_FAILURE';
+export const FETCH_STRINGS = 'redux-strings/App/StringViewer/FETCH_STRINGS';
