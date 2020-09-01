@@ -10,6 +10,7 @@ import {
   ADD_STRING_SUCCESS,
   ADD_STRING_FAILURE,
   UPDATE_UI_STRING,
+  POST_STRING,
 } from './constants';
 
 export function addString() {
@@ -34,6 +35,13 @@ export function updateString(uiString) {
   return {
     type: UPDATE_UI_STRING,
     uiString,
+  };
+}
+
+export function postString(string) {
+  return {
+    type: POST_STRING,
+    string,
   };
 }
 

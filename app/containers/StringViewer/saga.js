@@ -1,22 +1,18 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
-import {
-  UPDATE_STRINGS_REQUEST,
-  UPDATE_STRINGS_SUCCESS,
-  UPDATE_STRINGS_FAILURE,
-  FETCH_STRINGS,
-} from './constants';
+import { FETCH_STRINGS } from './constants';
+import { updateString, stringUpdated, stringUpdatingError } from './actions';
 
 // Individual exports for testing
 export function* getStrings() {
   const requestURL = `http://localhost:3000/strings`;
 
   try {
-    yield put({ type: UPDATE_STRINGS_REQUEST });
+    yield put(updateString());
     const strings = yield call(request, requestURL);
-    yield put({ type: UPDATE_STRINGS_SUCCESS, strings });
+    yield put(stringUpdated(strings));
   } catch (error) {
-    yield put({ type: UPDATE_STRINGS_FAILURE });
+    yield put(stringUpdatingError());
   }
   // See example in containers/HomePage/saga.js
 }

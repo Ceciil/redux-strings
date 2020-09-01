@@ -14,7 +14,7 @@ import { compose } from 'redux';
 import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringInput from 'components/StringInput';
-import { updateString } from './actions';
+import { updateString, postString } from './actions';
 import {
   makeSelectUIString,
   makeSelectLoading,
@@ -68,7 +68,7 @@ function mapDispatchToProps(dispatch) {
   };
 
   const onSubmit = string => {
-    dispatch({ type: 'ADD_STRING', string });
+    dispatch(postString(string));
   };
 
   return {

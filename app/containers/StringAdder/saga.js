@@ -1,8 +1,11 @@
 import { call, put, takeLatest } from 'redux-saga/effects';
 import request from 'utils/request';
 
+import { addString, stringAdded, stringAddingError } from './actions';
+import { POST_STRING } from './constants';
+
 // Individual exports for testing
-export function* addString(action) {
+export function* postString(action) {
   const requestURL = `http://localhost:3000/strings`;
   const options = {
     method: 'POST',
@@ -13,15 +16,15 @@ export function* addString(action) {
   };
 
   try {
-    yield put({ type: 'ADD_STRING_REQUEST' });
+    yield put(addString());
     yield call(request, requestURL, options);
-    yield put({ type: 'ADD_STRING_SUCCESS' });
+    yield put(stringAdded());
   } catch (error) {
-    yield put({ type: 'ADD_STRING_FAILURE' });
+    yield put(stringAddingError());
   }
 }
 
 export default function* stringAdderSaga() {
   // Then I want to update redux with my new strings
-  yield takeLatest('ADD_STRING', addString);
+  yield takeLatest(POST_STRING, postString);
 }
