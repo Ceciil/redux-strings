@@ -9,8 +9,8 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import styled from 'styled-components';
-import { Switch, Route, Link } from 'react-router-dom';
-
+import { Switch, Route } from 'react-router-dom';
+import NavBar from 'components/NavBar';
 import StringViewer from 'containers/StringViewer';
 import StringAdder from 'containers/StringAdder';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
@@ -36,11 +36,7 @@ export default function App() {
         <meta name="description" content="A React.js Boilerplate application" />
       </Helmet>
 
-      {/* TODO: Refactor page navigation into components */}
-      <span>
-        <Link to="/view">View Strings</Link>{' '}
-        <Link to="/input">Input a String</Link>
-      </span>
+      <NavBar />
 
       <Switch>
         <Route path="/view" component={StringViewer} />
