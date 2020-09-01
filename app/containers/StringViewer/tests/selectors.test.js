@@ -1,7 +1,19 @@
-// import { selectStringViewerDomain } from '../selectors';
+import { selectStringViewerDomain } from '../selectors';
 
 describe('selectStringViewerDomain', () => {
-  it('Expect to have unit tests specified', () => {
-    expect(true).toEqual(false);
+  it('Should select the stringViewer state', () => {
+    const strings = ['small', 'cat'];
+
+    const stringViewerState = {
+      data: {
+        loading: false,
+        error: false,
+        strings,
+      },
+    };
+    const mockedState = {
+      stringViewer: stringViewerState,
+    };
+    expect(selectStringViewerDomain(mockedState)).toEqual(stringViewerState);
   });
 });
