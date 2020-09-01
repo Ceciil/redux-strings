@@ -13,7 +13,6 @@ import { Switch, Route } from 'react-router-dom';
 import NavBar from 'components/NavBar';
 import StringViewer from 'containers/StringViewer';
 import StringAdder from 'containers/StringAdder';
-import NotFoundPage from 'containers/NotFoundPage/Loadable';
 
 import GlobalStyle from '../../global-styles';
 
@@ -29,11 +28,8 @@ const AppWrapper = styled.div`
 export default function App() {
   return (
     <AppWrapper>
-      <Helmet
-        titleTemplate="%s - React.js Boilerplate"
-        defaultTitle="React.js Boilerplate"
-      >
-        <meta name="description" content="A React.js Boilerplate application" />
+      <Helmet defaultTitle="Dovenmuehle Tech Screen">
+        <meta name="description" content="String display application" />
       </Helmet>
 
       <NavBar />
@@ -41,7 +37,6 @@ export default function App() {
       <Switch>
         <Route path="/view" component={StringViewer} />
         <Route path="/input" component={StringAdder} />
-        <Route path="" component={NotFoundPage} />
       </Switch>
 
       <GlobalStyle />

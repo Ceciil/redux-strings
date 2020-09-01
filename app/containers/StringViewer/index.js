@@ -47,8 +47,11 @@ export function StringViewer({ loading, error, strings, getStrings }) {
   return (
     <div>
       <Helmet>
-        <title>StringViewer</title>
-        <meta name="description" content="Description of StringViewer" />
+        <title>Dovenmuehle Tech Screen</title>
+        <meta
+          name="description"
+          content="This page allows you to view the strings"
+        />
       </Helmet>
       <StringList strings={strings} />
     </div>

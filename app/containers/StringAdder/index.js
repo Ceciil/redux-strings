@@ -34,8 +34,11 @@ export function StringAdder({ loading, error, uiString, onChange, onSubmit }) {
   return (
     <div>
       <Helmet>
-        <title>StringAdder</title>
-        <meta name="description" content="Description of StringAdder" />
+        <title>Dovenmuehle Tech Screen</title>
+        <meta
+          name="description"
+          content="This page allows you to add a string to the list"
+        />
       </Helmet>
       <StringInput
         value={uiString}
