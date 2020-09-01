@@ -15,8 +15,12 @@ import { useInjectSaga } from 'utils/injectSaga';
 import { useInjectReducer } from 'utils/injectReducer';
 import StringList from 'components/StringList';
 import Spinner from 'components/Spinner';
-import makeSelectStringViewer from './selectors';
-import reducer, { initialState } from './reducer';
+import {
+  makeSelectStrings,
+  makeSelectLoading,
+  makeSelectError,
+} from './selectors';
+import reducer from './reducer';
 import saga from './saga';
 
 export function StringViewer({ loading, error, strings, getStrings }) {
@@ -57,13 +61,13 @@ StringViewer.propTypes = {
   getStrings: PropTypes.func,
 };
 
-const mapStateToProps = state => state.stringViewer || initialState;
+const mapStateToProps = createStructuredSelector({
+  strings: makeSelectStrings(),
+  loading: makeSelectLoading(),
+  error: makeSelectError(),
+});
 
-// const mapStateToProps = createStructuredSelector({
-//   stringViewer: makeSelectStringViewer(),
-// });
-
-function mapDispatchToProps(dispatch) {
+export function mapDispatchToProps(dispatch) {
   const getStrings = () => {
     dispatch({ type: 'GET_STRINGS' });
   };

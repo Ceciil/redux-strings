@@ -15,11 +15,26 @@ const selectStringViewerDomain = state => state.stringViewer || initialState;
  * Default selector used by StringViewer
  */
 
-const makeSelectStringViewer = () =>
+const makeSelectStrings = () =>
   createSelector(
     selectStringViewerDomain,
-    substate => substate,
+    substate => substate.strings,
   );
 
-export default makeSelectStringViewer;
-export { selectStringViewerDomain };
+const makeSelectLoading = () =>
+  createSelector(
+    selectStringViewerDomain,
+    substate => substate.laoding,
+  );
+const makeSelectError = () =>
+  createSelector(
+    selectStringViewerDomain,
+    substate => substate.error,
+  );
+
+export {
+  selectStringViewerDomain,
+  makeSelectStrings,
+  makeSelectLoading,
+  makeSelectError,
+};
