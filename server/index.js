@@ -20,11 +20,11 @@ app.use(bodyParser.json());
 
 // If you need a backend, e.g. an API, add your custom backend-specific middleware here
 // app.use('/api', myApi);
-app.get('/strings', (req, res, next) => {
+app.get('/strings', (req, res) => {
   res.send(stringsCache);
 });
 
-app.post('/strings', (req, res, next) => {
+app.post('/strings', (req, res) => {
   if (req.body.string) {
     stringsCache.unshift(req.body.string);
   }
